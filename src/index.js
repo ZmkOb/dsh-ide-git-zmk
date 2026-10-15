@@ -868,6 +868,70 @@ async function unstage(payload) {
 }
 
 /**
+ * Split a marker-scarred merge body into the segments a three-pane resolver
+ * renders: plain text runs, and the conflicts themselves.
+ *
+ * Each conflict becomes `{ ours, theirs, base }` as LINE ARRAYS, so the panel can
+ * lay the two sides out row by row without re-splitting anything. `base` is null
+ * for the ordinary two-way style and an array for `merge.conflictStyle=diff3`
+ * (which adds a `|||||||` section) — the caller distinguishes "no base recorded"
+ * from "an empty base".
+ *
+ * Marker detection mirrors git's own prefixes rather than exact equality: the
+ * `<<<<<<<` line carries the branch name and the `>>>>>>>` line the other ref, so
+ * neither is ever a bare seven-character line.
+ *
+ * A `<<<<<<<` with no matching separator/end is NOT a conflict — git would never
+ * write one, and guessing would turn a stray line of source into a phantom
+ * conflict. It is left as literal text.
+ */
+function parseConflictBlocks(text) {
+  if (typeof text !== 'string' || text === '') return []
+  const lines = text.split('\n')
+  const segments = []
+  let buffer = []
+  const flushText = () => {
+    if (buffer.length === 0) return
+    segments.push({ kind: 'text', text: buffer.join('\n') })
+    buffer = []
+  }
+  let index = 0
+  while (index < lines.length) {
+    if (!lines[index].startsWith('<<<<<<<')) {
+      buffer.push(lines[index])
+      index += 1
+      continue
+    }
+    let separator = -1
+    let baseMark = -1
+    let end = -1
+    for (let at = index + 1; at < lines.length; at += 1) {
+      const line = lines[at]
+      if (line.startsWith('|||||||') && baseMark < 0 && separator < 0) baseMark = at
+      else if (line.startsWith('=======') && separator < 0) separator = at
+      else if (line.startsWith('>>>>>>>') && separator >= 0) { end = at; break }
+    }
+    if (separator < 0 || end < 0) {
+      buffer.push(lines[index])
+      index += 1
+      continue
+    }
+    flushText()
+    const hasBase = baseMark >= 0 && baseMark < separator
+    segments.push({
+      kind: 'conflict',
+      index: segments.filter((segment) => segment.kind === 'conflict').length,
+      ours: lines.slice(index + 1, hasBase ? baseMark : separator),
+      base: hasBase ? lines.slice(baseMark + 1, separator) : null,
+      theirs: lines.slice(separator + 1, end),
+    })
+    index = end + 1
+  }
+  flushText()
+  return segments
+}
+
+/**
  * The three inputs of an unmerged path, for the three-pane conflict resolver.
  *
  * A conflict is NOT a diff. Git keeps the three inputs in the INDEX as stages
@@ -918,6 +982,9 @@ async function conflict(payload) {
     ours: ours,
     theirs: theirs,
     work: work,
+    /* The resolver's unit of work: one entry per conflict, in file order, each
+       carrying both sides already split into lines. */
+    blocks: parseConflictBlocks(work),
     truncated: truncated,
   }
 }

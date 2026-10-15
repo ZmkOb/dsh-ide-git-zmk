@@ -207,3 +207,57 @@ test('conflict requires a path', async () => {
   assert.equal(body.ok, false)
   assert.equal(body.error.code, 'bad-request')
 })
+
+test('blocks carry both sides already split into lines', async () => {
+  const { dir, g } = scratch()
+  merge(g)
+  const { body } = await call('conflict', { cwd: dir, path: 'conflict.txt' })
+  const conflicts = body.data.blocks.filter((segment) => segment.kind === 'conflict')
+  assert.equal(conflicts.length, 1)
+  assert.deepEqual(conflicts[0].ours, ['main line'])
+  assert.deepEqual(conflicts[0].theirs, ['feature line'])
+  assert.equal(conflicts[0].base, null, 'the two-way style records no base section')
+  assert.equal(conflicts[0].index, 0)
+})
+
+test('diff3 style keeps the base section the resolver can show', async () => {
+  const { dir, g } = scratch()
+  g('config', 'merge.conflictStyle', 'diff3')
+  merge(g)
+  const { body } = await call('conflict', { cwd: dir, path: 'conflict.txt' })
+  const conflict = body.data.blocks.find((segment) => segment.kind === 'conflict')
+  assert.deepEqual(conflict.base, ['base line'], 'the ||||||| section is preserved')
+  assert.deepEqual(conflict.ours, ['main line'])
+  assert.deepEqual(conflict.theirs, ['feature line'])
+})
+
+test('text outside the conflict survives, in order', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'dsh-ide-git-conflict-multi-'))
+  made.push(dir)
+  const g = (...args) => execFileSync('git', args, { cwd: dir, encoding: 'utf8' })
+  g('init', '-q', '-b', 'main')
+  g('config', 'core.autocrlf', 'false')
+  g('config', 'core.eol', 'lf')
+  g('config', 'user.name', 'Check')
+  g('config', 'user.email', 'check@example.com')
+  writeFileSync(join(dir, 'm.txt'), 'head\nshared\n')
+  g('add', '-A')
+  g('commit', '-q', '-m', 'base')
+  g('checkout', '-q', '-b', 'feature')
+  writeFileSync(join(dir, 'm.txt'), 'head\nfeature\n')
+  g('add', '-A')
+  g('commit', '-q', '-m', 'feature side')
+  g('checkout', '-q', 'main')
+  writeFileSync(join(dir, 'm.txt'), 'head\nmain\n')
+  g('add', '-A')
+  g('commit', '-q', '-m', 'main side')
+  try { g('merge', '--no-edit', 'feature') } catch (error) { void error }
+
+  const { body } = await call('conflict', { cwd: dir, path: 'm.txt' })
+  assert.deepEqual(
+    body.data.blocks.map((segment) => segment.kind),
+    ['text', 'conflict', 'text'],
+    'the untouched head line stays outside the conflict',
+  )
+  assert.equal(body.data.blocks[0].text, 'head')
+})
