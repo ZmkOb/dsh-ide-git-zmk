@@ -463,7 +463,7 @@ function withRepoLock(key, work) {
 }
 
 const WRITE_METHODS = new Set([
-  'stage', 'unstage', 'discard', 'commit', 'checkout', 'branchCreate', 'branchRename',
+  'stage', 'unstage', 'discard', 'resolveConflict', 'commit', 'checkout', 'branchCreate', 'branchRename',
   'branchDelete', 'merge', 'rebase', 'cherryPick', 'revert', 'reset', 'fetch', 'pull',
   'push', 'stashPush', 'stashApply', 'stashDrop', 'stashClear', 'tagCreate', 'tagDelete', 'tagDeleteRemote', 'pushTags', 'clone', 'remoteAdd', 'remoteRemove', 'branchDeleteRemote', 'undoApply',
 ])
@@ -865,6 +865,84 @@ async function unstage(payload) {
   const result = await runGit(root, ['reset', '-q', 'HEAD', '--', ...paths])
   if (result.code !== 0) await git(root, ['rm', '--cached', '-r', '-q', '--', ...paths])
   return { unstaged: paths.length }
+}
+
+/**
+ * The three inputs of an unmerged path, for the three-pane conflict resolver.
+ *
+ * A conflict is NOT a diff. Git keeps the three inputs in the INDEX as stages
+ * 1/2/3 — base, ours, theirs — and leaves nothing in the working tree but a
+ * marker-scarred merge file. Read them from the index (`git show :1:<path>`)
+ * rather than re-parsing a combined diff, which is a different and far lossier
+ * format (three line ranges, two marker columns, no per-side text at all).
+ *
+ * `operationOf` decides what ours/theirs MEAN. In a merge, stage 2 is the branch
+ * you are on. A rebase, cherry-pick or revert replays your work onto the other
+ * side and git SWAPS the stages — so a panel that prints "ours = mine"
+ * unconditionally would label both panes backwards. `swapped` carries that fact
+ * to the UI instead of letting it guess.
+ */
+async function conflict(payload) {
+  const cwd = cwdOf(payload)
+  const root = await repoRootOf(cwd, payload)
+  const rel = requireRelativePath(payload.path)
+  /* A stage is legitimately ABSENT: an add/add conflict has no base, a
+     delete/modify conflict has no file on one side. Absent is data, not an
+     error, so a missing stage comes back as null rather than throwing. */
+  const readStage = async (stage) => {
+    const result = await runGit(root, ['show', ':' + String(stage) + ':' + rel])
+    if (result.code !== 0) return null
+    return result.stdout
+  }
+  const [base, ours, theirs] = await Promise.all([readStage(1), readStage(2), readStage(3)])
+  /* The working-tree body still holds the markers — that is what the panel edits
+     and what the resolver's "keep both" is measured against. A delete/modify
+     conflict leaves no file at all, so absent is normal here too. */
+  let work = null
+  let truncated = false
+  try {
+    work = readFileSync(path.join(root, rel), 'utf8')
+    if (work.length > MAX_DIFF_CHARS) {
+      work = work.slice(0, MAX_DIFF_CHARS)
+      truncated = true
+    }
+  } catch (error) {
+    void error
+  }
+  const operation = await operationOf(root)
+  return {
+    path: rel,
+    operation: operation,
+    swapped: operation === 'rebase' || operation === 'cherry-pick' || operation === 'revert',
+    base: base,
+    ours: ours,
+    theirs: theirs,
+    work: work,
+    truncated: truncated,
+  }
+}
+
+/**
+ * Write a resolved body and mark the path settled (`git add`).
+ *
+ * Writing the file is the only way to record a resolution that is neither side
+ * verbatim; `git add` is the act that tells git the conflict is over — which is
+ * why the panel's ordinary stage button already means "resolved" during a merge.
+ */
+async function resolveConflict(payload) {
+  const cwd = cwdOf(payload)
+  const root = await repoRootOf(cwd, payload)
+  const rel = requireRelativePath(payload.path)
+  if (typeof payload.content !== 'string') throw badRequest('content is required')
+  const absolute = path.isAbsolute(rel) ? rel : path.join(root, rel)
+  /* A resolved body is written for real, so — exactly like the untracked-diff
+     guard — an absolute path may not escape the repository. */
+  if (absolute !== root && !absolute.startsWith(root + path.sep)) {
+    throw badRequest('path must stay inside the repository')
+  }
+  writeFileSync(absolute, payload.content, 'utf8')
+  await git(root, ['add', '--', rel])
+  return { path: rel, resolved: true }
 }
 
 async function discard(payload) {
@@ -1888,6 +1966,8 @@ const METHODS = {
   compare,
   stage,
   unstage,
+  conflict,
+  resolveConflict,
   discard,
   commit,
   checkout,
