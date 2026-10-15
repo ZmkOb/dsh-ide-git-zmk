@@ -9985,6 +9985,87 @@ window.__ModuleLoader__.load({
        every callback closes over `run`/`base`, and those only change together
        with a repo switch, which lands as a brand-new summary array — i.e.
        new `item` references, so the rows do re-render with fresh closures. */
+    /**
+     * The directory forest behind "Group by directory": every path segment becomes
+     * its own node, so a deep Java package chain reads as nested folders instead of
+     * one unreadable full-path row.
+     *
+     * An ignored DIRECTORY arrives as "dist/" (git ls-files --directory), which is a
+     * single leaf with no children — splitting it on '/' would grow a bogus "dist"
+     * folder holding a nameless file, so those stay at the root.
+     *
+     * Pure (closes over nothing), so tests/changes-tree can lift and drive it the
+     * way graph.test.mjs lifts buildRows.
+     */
+    function buildChangesTree(entries) {
+      const root = { folders: new Map(), files: [] }
+      for (const item of entries) {
+        const raw = String(item.path)
+        if (raw.slice(-1) === '/') {
+          root.files.push(item)
+          continue
+        }
+        const parts = raw.split('/')
+        let node = root
+        for (let index = 0; index < parts.length - 1; index += 1) {
+          const segment = parts[index]
+          if (node.folders.has(segment) === false) node.folders.set(segment, { folders: new Map(), files: [] })
+          node = node.folders.get(segment)
+        }
+        node.files.push(item)
+      }
+      return root
+    }
+    /**
+     * Fold every subtree's file count and +/- lines onto its own node, so a folded
+     * folder can still say how much changed inside it. Returns that node's total.
+     */
+    function totalChangesTree(node) {
+      let count = node.files.length
+      let additions = 0
+      let deletions = 0
+      for (const item of node.files) {
+        additions += item.additions > 0 ? item.additions : 0
+        deletions += item.deletions > 0 ? item.deletions : 0
+      }
+      for (const child of node.folders.values()) {
+        const sub = totalChangesTree(child)
+        count += sub.count
+        additions += sub.additions
+        deletions += sub.deletions
+      }
+      node.total = { count: count, additions: additions, deletions: deletions }
+      return node.total
+    }
+    /**
+     * Depth-first render order of a totalled forest. A chain of single-child folders
+     * holding no files of its own collapses into one label ("a/b/c") — the IDE's
+     * compact-middle-packages behaviour — while its id still addresses the FULL
+     * path, so folded state keeps its meaning across a refresh. `isFolded` is passed
+     * in rather than closed over, which is what keeps this function pure.
+     */
+    function flattenChangesTree(node, prefix, depth, isFolded, out) {
+      for (const name of Array.from(node.folders.keys()).sort()) {
+        const child = node.folders.get(name)
+        let label = name
+        let id = prefix === '' ? name : prefix + '/' + name
+        let tip = child
+        while (tip.files.length === 0 && tip.folders.size === 1) {
+          const only = Array.from(tip.folders.keys())[0]
+          label = label + '/' + only
+          id = id + '/' + only
+          tip = tip.folders.get(only)
+        }
+        out.push({ kind: 'folder', id: id, label: label, depth: depth, total: tip.total })
+        if (isFolded(id) !== true) flattenChangesTree(tip, id, depth + 1, isFolded, out)
+      }
+      for (const item of node.files) out.push({ kind: 'row', item: item, depth: depth })
+      return out
+    }
+    /* Tree-mode indentation for the changes list. Kept local (the branch tree has
+       its own, larger pair) because this panel is narrow and its rows are denser. */
+    const CHANGES_INDENT_BASE = 10
+    const CHANGES_INDENT_STEP = 12
     const ChangeRow = memo(function ChangeRow(props) {
       const t = props.t
       const item = props.item
@@ -9993,9 +10074,15 @@ window.__ModuleLoader__.load({
       // stage/discard buttons below would silently do nothing (git needs -f).
       const readOnly = props.group === 'ignored'
       const status = readOnly ? 'I' : (raw === '' ? 'M' : raw.charAt(0))
+      /* "Group by directory" makes this row a leaf of a folder node: indenting it
+         is what carries the hierarchy, and the trailing directory subtitle would
+         only repeat what the parent folder row already spells out. */
+      const depth = props.depth === undefined ? 0 : props.depth
+      const inTree = props.tree === true
       return E('div', {
         className: 'dig-row dig-row-file' + (props.selected === true ? ' dig-row-selected' : ''),
         title: item.origPath === undefined ? item.path : item.origPath + ' → ' + item.path,
+        style: depth > 0 ? { paddingLeft: String(CHANGES_INDENT_BASE + depth * CHANGES_INDENT_STEP) + 'px' } : undefined,
         /* The click is handled ONE level up (ChangesPanel): plain click only
            selects, DOUBLE-click opens the diff (v0.18.3 — one interaction model
            across every list). */
@@ -10008,14 +10095,14 @@ window.__ModuleLoader__.load({
         // An ignored DIRECTORY comes back as "dist/" (ls-files --directory), whose
         // basename is empty — show the whole path instead of a blank label.
         E('span', { className: 'dig-row-label' }, item.path.slice(-1) === '/' ? item.path : baseName(item.path)),
-        E('span', { className: 'dig-row-sub dig-row-dir' }, item.path.slice(-1) === '/' ? '' : dirName(item.path)),
+        inTree ? null : E('span', { className: 'dig-row-sub dig-row-dir' }, item.path.slice(-1) === '/' ? '' : dirName(item.path)),
         item.additions > 0 ? E('span', { className: 'dig-stat-add' }, '+' + item.additions) : null,
         item.deletions > 0 ? E('span', { className: 'dig-stat-del' }, '-' + item.deletions) : null,
         readOnly ? null : (props.group === 'staged'
           ? E('button', { type: 'button', className: 'dig-mini', title: t('action.unstage'), onClick: (event) => { event.stopPropagation(); props.onUnstage(item) } }, E(Icon, { name: 'minus', size: 12 }))
           : E('button', { type: 'button', className: 'dig-mini', title: t('action.stage'), onClick: (event) => { event.stopPropagation(); props.onStage(item) } }, E(Icon, { name: 'plus', size: 12 }))),
         readOnly ? null : E('button', { type: 'button', className: 'dig-mini', title: t('action.discard'), onClick: (event) => { event.stopPropagation(); props.onDiscard(item, props.group) } }, E(Icon, { name: 'undo', size: 12 })))
-    }, (prev, next) => prev.item === next.item && prev.group === next.group && prev.t === next.t && prev.selected === next.selected)
+    }, (prev, next) => prev.item === next.item && prev.group === next.group && prev.t === next.t && prev.selected === next.selected && prev.depth === next.depth && prev.tree === next.tree)
 
     function ChangesPanel(props) {
       const t = props.t
@@ -10251,17 +10338,15 @@ window.__ModuleLoader__.load({
         setAmend(false)
         return true
       }
-      const entryRow = (key, item) => E(ChangeRow, {
+      const entryRow = (key, item, depth) => E(ChangeRow, {
         key: key + ':' + item.path, item: item, group: key, t: t,
+        depth: depth === undefined ? 0 : depth,
+        tree: groupBy === 'dir',
         selected: selection.has(key + ':' + item.path) === true,
         onRowClick: handleRowClick,
         onDblClick: props.onDiff,
         onStage: props.onStage, onUnstage: props.onUnstage, onDiscard: props.onDiscard, onDiff: props.onDiff, onMenu: props.onChangeMenu,
       })
-      const folderOf = (item) => {
-        const dir = dirName(item.path)
-        return dir === '' ? t('changes.rootDir') : dir
-      }
       /* The "..." menu's sort orders (v0.15). 'git' keeps git's own status
          order; the others are pure client-side sorts of already-loaded
          entries — no extra git calls, no re-fetch. */
@@ -10289,27 +10374,33 @@ window.__ModuleLoader__.load({
             for (const item of sorted) out.push({ kind: 'row', key: key + ':' + item.path, h: ITEM_HEIGHTS.row, node: entryRow(key, item) })
             return
           }
-          const folders = new Map()
-          for (const item of sorted) {
-            const name = folderOf(item)
-            if (folders.has(name) === false) folders.set(name, [])
-            folders.get(name).push(item)
-          }
-          for (const name of Array.from(folders.keys()).sort()) {
-            const id = key + '|' + name
-            const open = foldedDirs[id] !== true
-            const list = folders.get(name)
+          /* One flat row per full path was all "Group by directory" used to do. The
+             forest below turns every segment into a real collapsible node carrying
+             its subtree's totals, so a deep package chain finally reads as a tree. */
+          const forest = buildChangesTree(sorted)
+          totalChangesTree(forest)
+          const flat = flattenChangesTree(forest, '', 0, (id) => foldedDirs[key + '|' + id], [])
+          for (const entry of flat) {
+            if (entry.kind === 'row') {
+              out.push({ kind: 'row', key: key + ':' + entry.item.path, h: ITEM_HEIGHTS.row, node: entryRow(key, entry.item, entry.depth) })
+              continue
+            }
+            const foldId = key + '|' + entry.id
+            const open = foldedDirs[foldId] !== true
+            const total = entry.total
             out.push({
-              kind: 'folder', key: 'folder:' + id, h: ITEM_HEIGHTS.folder,
+              kind: 'folder', key: 'folder:' + foldId, h: ITEM_HEIGHTS.folder,
               node: E('button', {
-                type: 'button', className: 'dig-folder-head',
-                onClick: () => setFoldedDirs((previous) => Object.assign({}, previous, { [id]: previous[id] !== true })),
+                type: 'button', className: 'dig-folder-head', title: entry.id,
+                style: { paddingLeft: (CHANGES_INDENT_BASE + entry.depth * CHANGES_INDENT_STEP) + 'px' },
+                onClick: () => setFoldedDirs((previous) => Object.assign({}, previous, { [foldId]: previous[foldId] !== true })),
               },
                 E('span', { className: 'dig-chevron' + (open ? ' dig-chevron-open' : '') }, E(Icon, { name: 'chevron', size: 10 })),
-                E('span', { className: 'dig-folder-name' }, name),
-                E('span', { className: 'dig-count' }, String(list.length))),
+                E('span', { className: 'dig-folder-name' }, entry.label),
+                total.additions > 0 ? E('span', { className: 'dig-stat-add' }, '+' + total.additions) : null,
+                total.deletions > 0 ? E('span', { className: 'dig-stat-del' }, '-' + total.deletions) : null,
+                E('span', { className: 'dig-count' }, String(total.count))),
             })
-            if (open === true) for (const item of list) out.push({ kind: 'row', key: key + ':' + item.path, h: ITEM_HEIGHTS.row, node: entryRow(key, item) })
           }
         }
         const emitGroup = (key, title, entries) => {
