@@ -254,9 +254,28 @@ async function repoRootOf(cwd, payload) {
   return path.normalize(top === '' ? cwd : top)
 }
 
+/**
+ * The checked-out branch name, or 'HEAD' when detached.
+ *
+ * `rev-parse --abbrev-ref HEAD` THROWS on a repository with no commits yet
+ * (unborn HEAD): exit 128, "ambiguous argument 'HEAD'". A folder someone has
+ * just run `git init` in is exactly that case, and because `summary` asks for the
+ * branch BEFORE it reads any status, that single failure used to take the whole
+ * panel down — a brand-new repository rendered as an error, and the files it
+ * already contained were never listed at all.
+ *
+ * `symbolic-ref --short HEAD` is the command that answers on an unborn branch: it
+ * names the branch the first commit will create ("master"), which is what the
+ * panel should show. It is also the only one of the two that can name a branch
+ * which is not a ref yet.
+ */
 async function currentBranchOf(root) {
-  const name = (await git(root, ['rev-parse', '--abbrev-ref', 'HEAD'])).trim()
-  return name
+  const symbolic = await runGit(root, ['symbolic-ref', '--short', 'HEAD'])
+  if (symbolic.code === 0) return symbolic.stdout.trim()
+  /* No symbolic ref: a detached HEAD, which `rev-parse --abbrev-ref` spells
+     "HEAD" — the callers rely on that exact spelling for the detached flag. */
+  const result = await runGit(root, ['rev-parse', '--abbrev-ref', 'HEAD'])
+  return result.code === 0 ? result.stdout.trim() : ''
 }
 
 async function upstreamOf(root, branch) {
@@ -735,8 +754,20 @@ async function log(payload) {
   const args = ['log', '--max-count=' + (limit + 1), '--skip=' + skip, '--date-order', '--pretty=format:' + LOG_FORMAT]
   if (typeof payload.rev === 'string' && payload.rev.trim() !== '') args.push(requireRef(payload.rev, 'rev'))
   if (typeof payload.path === 'string' && payload.path.trim() !== '') args.push('--', payload.path)
-  const out = await git(root, args)
-  const all = parseLog(out)
+  /* A repository with no commits yet has no history to walk, and `git log` exits
+     128 ("your current branch 'master' does not have any commits yet") instead of
+     printing nothing. That is an EMPTY history, not a failure: a freshly
+     initialised workspace should show a blank history list, not an error banner.
+     Only that exact condition is swallowed — a bad `rev` is still an error. */
+  const result = await runGit(root, args)
+  if (result.code !== 0) {
+    const detail = (result.stderr.trim() === '' ? result.stdout : result.stderr).trim()
+    if (/does not have any commits yet/.test(detail)) {
+      return { repoRoot: root, commits: [], hasMore: false, skip, limit, empty: true }
+    }
+    throw new PanelError('git-failed', detail === '' ? 'git log failed' : detail, 409)
+  }
+  const all = parseLog(result.stdout)
   const hasMore = all.length > limit
   return { repoRoot: root, commits: hasMore ? all.slice(0, limit) : all, hasMore, skip, limit }
 }
