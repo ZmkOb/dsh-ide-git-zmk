@@ -1021,26 +1021,41 @@ async function conflict(payload) {
 }
 
 /**
- * Write a resolved body and mark the path settled (`git add`).
+ * Write a resolved body and mark the path settled (`git add`), or settle it by
+ * removing the file (`git rm`) when the resolution is "this file should not
+ * exist".
  *
  * Writing the file is the only way to record a resolution that is neither side
  * verbatim; `git add` is the act that tells git the conflict is over — which is
  * why the panel's ordinary stage button already means "resolved" during a merge.
+ *
+ * The delete branch exists because a delete/modify conflict has NO conflict
+ * markers in the working tree: git leaves the surviving version in place and
+ * records the disagreement only in the index. There is nothing to choose block
+ * by block, so the pane can only offer the two real answers — keep the file, or
+ * remove it — and the second one cannot be expressed as "a body to write".
  */
 async function resolveConflict(payload) {
   const cwd = cwdOf(payload)
   const root = await repoRootOf(cwd, payload)
   const rel = requireRelativePath(payload.path)
-  if (typeof payload.content !== 'string') throw badRequest('content is required')
+  const remove = payload.remove === true
+  if (remove !== true && typeof payload.content !== 'string') throw badRequest('content is required')
   const absolute = path.isAbsolute(rel) ? rel : path.join(root, rel)
   /* A resolved body is written for real, so — exactly like the untracked-diff
      guard — an absolute path may not escape the repository. */
   if (absolute !== root && !absolute.startsWith(root + path.sep)) {
     throw badRequest('path must stay inside the repository')
   }
+  if (remove === true) {
+    /* -f because an unmerged path counts as "has staged changes" to plain
+       `git rm`; the conflict is exactly what we are here to settle. */
+    await git(root, ['rm', '-f', '--quiet', '--', rel])
+    return { path: rel, resolved: true, removed: true }
+  }
   writeFileSync(absolute, payload.content, 'utf8')
   await git(root, ['add', '--', rel])
-  return { path: rel, resolved: true }
+  return { path: rel, resolved: true, removed: false }
 }
 
 async function discard(payload) {

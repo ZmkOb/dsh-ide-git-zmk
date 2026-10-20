@@ -14,7 +14,7 @@
  */
 import { test, after } from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, writeFileSync, readFileSync, rmSync } from 'node:fs'
+import { mkdtempSync, writeFileSync, readFileSync, rmSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { execFileSync } from 'node:child_process'
@@ -231,8 +231,7 @@ test('diff3 style keeps the base section the resolver can show', async () => {
   assert.deepEqual(conflict.theirs, ['feature line'])
 })
 
-test('text outside the conflict survives, in order', async () => {
-  const dir = mkdtempSync(join(tmpdir(), 'dsh-ide-git-conflict-multi-'))
+test('text outside the conflict survives, in order', async () => {  const dir = mkdtempSync(join(tmpdir(), 'dsh-ide-git-conflict-multi-'))
   made.push(dir)
   const g = (...args) => execFileSync('git', args, { cwd: dir, encoding: 'utf8' })
   g('init', '-q', '-b', 'main')
@@ -260,4 +259,78 @@ test('text outside the conflict survives, in order', async () => {
     'the untouched head line stays outside the conflict',
   )
   assert.equal(body.data.blocks[0].text, 'head')
+})
+
+/** A delete/modify conflict: `feature` removes the file, `main` edits it. */
+function scratchDeleteModify() {
+  const dir = mkdtempSync(join(tmpdir(), 'dsh-ide-git-conflict-delmod-'))
+  made.push(dir)
+  const g = (...args) => execFileSync('git', args, { cwd: dir, encoding: 'utf8' })
+  g('init', '-q', '-b', 'main')
+  g('config', 'core.autocrlf', 'false')
+  g('config', 'core.eol', 'lf')
+  g('config', 'user.name', 'Check')
+  g('config', 'user.email', 'check@example.com')
+  writeFileSync(join(dir, 'gone.txt'), 'one\ntwo\nthree\n')
+  g('add', '-A')
+  g('commit', '-q', '-m', 'base')
+  g('checkout', '-q', '-b', 'feature')
+  g('rm', '-q', 'gone.txt')
+  g('commit', '-q', '-m', 'feature drops gone.txt')
+  g('checkout', '-q', 'main')
+  writeFileSync(join(dir, 'gone.txt'), 'one\ntwo edited\nthree\n')
+  g('add', '-A')
+  g('commit', '-q', '-m', 'main edits gone.txt')
+  try { g('merge', '--no-edit', 'feature') } catch (error) { void error }
+  return { dir, g }
+}
+
+/**
+ * The case that has no blocks to pick from. Git resolves a delete/modify
+ * conflict by leaving the surviving version in the tree WITHOUT markers, so the
+ * pane can only offer "keep it" or "remove it" — and "remove it" is `git rm`,
+ * not a body to write.
+ */
+test('a delete/modify conflict has no conflict blocks and one absent stage', async () => {
+  const { dir } = scratchDeleteModify()
+  const { status, body } = await call('conflict', { cwd: dir, path: 'gone.txt' })
+  assert.equal(status, 200)
+  assert.equal(body.data.theirs, null, 'the deleted side has no stage 3')
+  assert.equal(body.data.ours, 'one\ntwo edited\nthree\n')
+  assert.equal(
+    body.data.blocks.filter((segment) => segment.kind === 'conflict').length,
+    0,
+    'git left no markers, so there is nothing to choose block by block',
+  )
+  assert.equal(body.data.work, 'one\ntwo edited\nthree\n', 'the working tree keeps the surviving side')
+})
+
+test('resolveConflict with remove settles the path by deleting it', async () => {
+  const { dir, g } = scratchDeleteModify()
+  assert.equal(g('status', '--porcelain').trim(), 'UD gone.txt', 'still unmerged before the call')
+  const { status, body } = await call('resolveConflict', { cwd: dir, path: 'gone.txt', remove: true })
+  assert.equal(status, 200)
+  assert.equal(body.ok, true)
+  assert.equal(body.data.removed, true)
+  assert.equal(existsSync(join(dir, 'gone.txt')), false, 'the file is gone from the working tree')
+  assert.equal(g('diff', '--name-only', '--diff-filter=U').trim(), '', 'nothing unmerged remains')
+  assert.equal(g('status', '--porcelain').trim(), 'D  gone.txt', 'staged as a delete')
+})
+
+test('remove ignores a body and still refuses a path that escapes', async () => {
+  const { dir } = scratchDeleteModify()
+  const escaping = await call('resolveConflict', {
+    cwd: dir,
+    path: '../escaped.txt',
+    remove: true,
+  })
+  assert.equal(escaping.status, 400)
+  assert.equal(escaping.body.error.code, 'bad-request')
+})
+
+test('a plain resolveConflict reports that it did not remove anything', async () => {
+  const { dir, g } = scratch()
+  merge(g)
+  const { body } = await call('resolveConflict', { cwd: dir, path: 'conflict.txt', content: 'x\n' })
+  assert.equal(body.data.removed, false)
 })

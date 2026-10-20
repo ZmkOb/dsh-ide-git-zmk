@@ -214,6 +214,12 @@ window.__ModuleLoader__.load({
       'conflict.saving': '保存中…',
       'conflict.saved': '已保存并标记为已解决',
       'conflict.swapWarn': '变基中：左右方向相反',
+      'conflict.noBlocks': '这个路径没有可以逐块选择的冲突',
+      'conflict.noBlocksKept': '删除/修改冲突:git 把文件留在了工作区,没有冲突标记,只能在"保留文件"和"删除文件"之间二选一。',
+      'conflict.noBlocksAbsent': '删除/修改冲突:工作区里已经没有这个文件,只能把它删掉。',
+      'conflict.keepFile': '保留当前文件并标记已解决',
+      'conflict.deleteFile': '删除该文件并标记已解决',
+      'conflict.truncated': '文件过大,面板只读取了开头部分,不能在面板里保存',
       'pane.diff': '差异视图',
       'pane.resize': '拖动调整{name}尺寸,双击复位,方向键微调',
       'diff.binary': '二进制文件',
@@ -540,6 +546,12 @@ window.__ModuleLoader__.load({
       'conflict.saving': 'Saving…',
       'conflict.saved': 'Saved and marked resolved',
       'conflict.swapWarn': 'Rebase: the sides are reversed',
+      'conflict.noBlocks': 'This path has no conflict blocks to choose',
+      'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+      'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+      'conflict.keepFile': 'Keep the file and mark it resolved',
+      'conflict.deleteFile': 'Remove the file and mark it resolved',
+      'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
       'pane.diff': 'diff view',
       'pane.resize': 'Drag to resize {name}: double-click resets, arrow keys nudge',
       'diff.binary': 'Binary file',
@@ -874,6 +886,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': '差異檢視',
         'pane.resize': '拖動調整{name}尺寸,雙擊復位,方向鍵微調',
         'diff.binary': '二進位檔案',
@@ -1200,6 +1218,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': '差異檢視',
         'pane.resize': '拖曳調整{name}尺寸,雙擊重設,方向鍵微調',
         'diff.binary': '二進位檔案',
@@ -1526,6 +1550,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': '差異檢視',
         'pane.resize': '拖動調整{name}尺寸,雙擊復位,方向鍵微調',
         'diff.binary': '二進位檔案',
@@ -1852,6 +1882,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': '差分ビュー',
         'pane.resize': '{name}のサイズをドラッグで調整(ダブルクリックでリセット、矢印キーで微調整)',
         'diff.binary': 'バイナリファイル',
@@ -2178,6 +2214,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': '차이 보기',
         'pane.resize': '{name} 크기를 드래그해 조절(더블클릭 초기화, 화살표 키 미세 조정)',
         'diff.binary': '바이너리 파일',
@@ -2504,6 +2546,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'Diff-Ansicht',
         'pane.resize': 'Größe von {name} per Ziehen ändern (Doppelklick setzt zurück, Pfeiltasten justieren)',
         'diff.binary': 'Binärdatei',
@@ -2830,6 +2878,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'vue du diff',
         'pane.resize': 'Glisser pour redimensionner {name} (double-clic pour réinitialiser, flèches pour ajuster)',
         'diff.binary': 'Fichier binaire',
@@ -3156,6 +3210,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'просмотр diff',
         'pane.resize': 'Перетащите, чтобы изменить размер {name} (двойной клик — сброс, стрелки — точная настройка)',
         'diff.binary': 'Двоичный файл',
@@ -3482,6 +3542,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'visualização do diff',
         'pane.resize': 'Arraste para redimensionar {name} (duplo clique restaura, setas ajustam)',
         'diff.binary': 'Arquivo binário',
@@ -3808,6 +3874,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'vista diff',
         'pane.resize': 'Trascina per ridimensionare {name} (doppio clic ripristina, frecce per regolare)',
         'diff.binary': 'File binario',
@@ -4134,6 +4206,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'diff-weergave',
         'pane.resize': 'Sleep om {name} te vergroten (dubbelklik herstelt, pijltjes stellen fijn af)',
         'diff.binary': 'Binair bestand',
@@ -4460,6 +4538,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'widok diff',
         'pane.resize': 'Przeciągnij, aby zmienić rozmiar {name} (podwójne kliknięcie przywraca, strzałki korygują)',
         'diff.binary': 'Plik binarny',
@@ -4786,6 +4870,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'diff-vy',
         'pane.resize': 'Dra för att ändra storleken på {name} (dubbelklick återställer, piltangenter finjusterar)',
         'diff.binary': 'Binär fil',
@@ -5112,6 +5202,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'diff görünümü',
         'pane.resize': '{name} boyutunu sürükleyerek ayarlayın (çift tıklama sıfırlar, ok tuşları ince ayar yapar)',
         'diff.binary': 'İkili dosya',
@@ -5438,6 +5534,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'tampilan diff',
         'pane.resize': 'Seret untuk mengubah ukuran {name} (klik ganda mengatur ulang, tombol panah menyesuaikan)',
         'diff.binary': 'Berkas biner',
@@ -5764,6 +5866,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'chế độ xem diff',
         'pane.resize': 'Kéo để đổi kích thước {name} (nhấp đúp để đặt lại, phím mũi tên để tinh chỉnh)',
         'diff.binary': 'Tệp nhị phân',
@@ -6090,6 +6198,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'عرض الفروق',
         'pane.resize': 'اسحب لتغيير حجم {name} (النقر المزدوج يعيد الضبط، ومفاتيح الأسهم للضبط الدقيق)',
         'diff.binary': 'ملف ثنائي',
@@ -6416,6 +6530,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'डिफ़ व्यू',
         'pane.resize': '{name} का आकार बदलने के लिए खींचें (डबल-क्लिक रीसेट, तीर कुंजियाँ सूक्ष्म समायोजन)',
         'diff.binary': 'बाइनरी फ़ाइल',
@@ -6742,6 +6862,12 @@ window.__ModuleLoader__.load({
         'conflict.saving': 'Saving…',
         'conflict.saved': 'Saved and marked resolved',
         'conflict.swapWarn': 'Rebase: the sides are reversed',
+        'conflict.noBlocks': 'This path has no conflict blocks to choose',
+        'conflict.noBlocksKept': 'Delete/modify conflict: git left the file in the working tree with no markers, so the only answers are keep it or remove it.',
+        'conflict.noBlocksAbsent': 'Delete/modify conflict: the file is already gone from the working tree, so removing it is the only answer.',
+        'conflict.keepFile': 'Keep the file and mark it resolved',
+        'conflict.deleteFile': 'Remove the file and mark it resolved',
+        'conflict.truncated': 'This file is too large: only the beginning was read, so it cannot be saved from the panel.',
         'pane.diff': 'มุมมอง diff',
         'pane.resize': 'ลากเพื่อปรับขนาด {name} (ดับเบิลคลิกเพื่อรีเซ็ต ปุ่มลูกศรปรับละเอียด)',
         'diff.binary': 'ไฟล์ไบนารี',
@@ -8626,6 +8752,24 @@ window.__ModuleLoader__.load({
       return true
     }
 
+    /**
+     * Whether the pane may write a body back at all. Three separate refusals:
+     *
+     *  - the host capped what it read (`truncated`) — writing that back would
+     *    silently cut the rest of the file, so a big conflict is read-only;
+     *  - there are no conflict blocks — a delete/modify conflict leaves no
+     *    markers, and then a body can only be written when the working tree
+     *    still HAS the file (keep it); "remove it" is a different call;
+     *  - some block is still undecided.
+     */
+    function conflictCanSave(data, blocks, choices) {
+      if (data === null || data === undefined) return false
+      if (data.truncated === true) return false
+      const conflicts = blocks.filter((block) => block.kind === 'conflict')
+      if (conflicts.length === 0) return typeof data.work === 'string'
+      return conflictAllDecided(conflicts, choices)
+    }
+
     function ConflictPane(props) {
       const t = props.t
       const data = props.data
@@ -8648,7 +8792,16 @@ window.__ModuleLoader__.load({
         setChoices(next)
       }
       const resolved = conflicts.filter((conflict) => choices[conflict.index] !== undefined).length
-      const ready = conflictAllDecided(conflicts, choices)
+      /* A delete/modify conflict leaves NO markers behind: git keeps the
+         surviving version in the working tree and records the disagreement in
+         the index only. There is nothing to choose block by block — the two
+         real answers are "keep this file" and "this file should not exist". */
+      const blockless = conflicts.length === 0
+      const kept = data !== null && data !== undefined && typeof data.work === 'string'
+      /* The host caps what it reads. A truncated body must NEVER be written
+         back — that would cut the rest of the file — so it also blocks saving. */
+      const cut = data !== null && data !== undefined && data.truncated === true
+      const ready = conflictCanSave(data, blocks, choices)
       /* Rebase/cherry-pick swap the sides: stage 2 is the upstream being replayed
          onto, stage 3 is your own commit. */
       const swapped = data !== null && data !== undefined && data.swapped === true
@@ -8667,6 +8820,21 @@ window.__ModuleLoader__.load({
           setBusy(false)
         }
       }
+      /* The other real answer: the path should not exist after the merge, so it
+         is settled with `git rm` rather than with a body to write. */
+      const remove = async () => {
+        if (busy === true) return
+        setBusy(true)
+        setNote(null)
+        try {
+          await props.onRemove(data.path)
+          setNote(t('conflict.saved'))
+        } catch (error) {
+          setNote(error instanceof Error ? error.message : String(error))
+        } finally {
+          setBusy(false)
+        }
+      }
       const choiceButton = (block, choice, label) => E('button', {
         type: 'button',
         className: 'dig-cf-choice' + (choices[block.index] === choice ? ' dig-cf-on' : ''),
@@ -8675,10 +8843,37 @@ window.__ModuleLoader__.load({
       const column = (key, head, text) => E('div', { className: 'dig-cf-col dig-cf-' + key },
         E('div', { className: 'dig-cf-colHead' }, head),
         E('pre', { className: 'dig-cf-pre' }, text))
+      /* Nothing to pick from: say what the conflict actually is and offer the
+         only two answers. Without this branch the pane rendered a bare text
+         blob, "0/0 decided", and a save button that could never enable. */
+      if (blockless) {
+        return E('div', { className: 'dig-cf-root' },
+          E('div', { className: 'dig-cf-head' },
+            E('span', { className: 'dig-cf-count' }, t('conflict.noBlocks')),
+            cut ? E('span', { className: 'dig-cf-swap' }, t('conflict.truncated')) : null),
+          E('p', { className: 'dig-cf-hint' }, kept ? t('conflict.noBlocksKept') : t('conflict.noBlocksAbsent')),
+          kept ? E('pre', { className: 'dig-cf-solo' }, data.work) : null,
+          E('div', { className: 'dig-cf-foot' },
+            note === null ? null : E('span', { className: 'dig-cf-note' }, note),
+            E('span', { className: 'dig-cf-actions' },
+              kept
+                ? E('button', {
+                    type: 'button', className: 'dig-cf-save',
+                    disabled: busy === true,
+                    onClick: () => { void save() },
+                  }, busy === true ? t('conflict.saving') : t('conflict.keepFile'))
+                : null,
+              E('button', {
+                type: 'button', className: 'dig-cf-save dig-cf-danger',
+                disabled: busy === true,
+                onClick: () => { void remove() },
+              }, t('conflict.deleteFile')))))
+      }
       return E('div', { className: 'dig-cf-root' },
         E('div', { className: 'dig-cf-head' },
           E('span', { className: 'dig-cf-count' }, fill(t('conflict.progress'), { done: String(resolved), total: String(conflicts.length) })),
           swapped ? E('span', { className: 'dig-cf-swap' }, t('conflict.swapWarn')) : null,
+          cut ? E('span', { className: 'dig-cf-swap' }, t('conflict.truncated')) : null,
           E('span', { className: 'dig-cf-actions' },
             E('button', { type: 'button', className: 'dig-link', onClick: () => decideAll('ours') }, t('conflict.allOurs')),
             E('button', { type: 'button', className: 'dig-link', onClick: () => decideAll('theirs') }, t('conflict.allTheirs')))),
@@ -12925,6 +13120,16 @@ window.__ModuleLoader__.load({
                 setDiffContext(null)
                 await refresh()
               },
+              /* "this file should not exist" — a delete/modify conflict cannot be
+                 settled by writing a body, so it is settled by removing the path. */
+              onRemove: async (path) => {
+                await request('resolveConflict', Object.assign({}, base, { path: path, remove: true }))
+                setConflictData(null)
+                setPatch('')
+                setSelectedPath(null)
+                setDiffContext(null)
+                await refresh()
+              },
             })
           : E(DiffBody, { patch: patch, loading: patchLoading, t: t }))
 
@@ -14062,6 +14267,9 @@ window.__ModuleLoader__.load({
       '.dig-cf-result .dig-cf-pre{color:var(--dsw-alias-label-primary)}',
       '.dig-cf-foot{flex:none;display:flex;align-items:center;gap:8px;padding:6px 8px;border-top:1px solid var(--dsw-alias-border-l2)}',
       '.dig-cf-note{color:var(--dsw-alias-label-tertiary);font-size:11px}',
+      '.dig-cf-hint{margin:8px;color:var(--dsw-alias-label-secondary);line-height:1.55}',
+      '.dig-cf-solo{flex:1;overflow:auto;min-height:0;margin:0 8px 8px;border:1px solid var(--dsw-alias-border-l2);border-radius:var(--dsw-radius-sm,8px);padding:6px 8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere}',
+      '.dig-cf-save.dig-cf-danger{background:var(--dsw-alias-state-error-primary);border-color:var(--dsw-alias-state-error-primary)}',
       '.dig-cf-save{margin-left:auto;font:inherit;font-size:12px;padding:4px 12px;border-radius:var(--dsw-radius-xs,4px);cursor:pointer;border:1px solid var(--dsw-brand,var(--dsw-alias-brand-primary));background:var(--dsw-alias-brand-primary);color:var(--dsw-alias-label-on-brand,#fff);font-weight:600}',
       '.dig-cf-save[disabled]{opacity:.45;cursor:default}',
       '.dig-diff-line{display:flex;gap:8px;padding:0 6px;white-space:pre}',

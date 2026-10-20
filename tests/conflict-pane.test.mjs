@@ -37,15 +37,17 @@ function lift(name) {
   return source.slice(start, end)
 }
 
-/* All three share one scope: conflictFileText calls conflictResolutionText. */
+/* All of them share one scope: conflictFileText calls conflictResolutionText,
+   and conflictCanSave calls conflictAllDecided. */
 const lib = new Function(
   lift('conflictResolutionText') + '\n' +
   lift('conflictFileText') + '\n' +
-  lift('conflictAllDecided') +
-  '\nreturn { conflictResolutionText, conflictFileText, conflictAllDecided };',
+  lift('conflictAllDecided') + '\n' +
+  lift('conflictCanSave') +
+  '\nreturn { conflictResolutionText, conflictFileText, conflictAllDecided, conflictCanSave };',
 )()
 
-const { conflictResolutionText, conflictFileText, conflictAllDecided } = lib
+const { conflictResolutionText, conflictFileText, conflictAllDecided, conflictCanSave } = lib
 
 const conflict = (index, ours, theirs, base = null) => ({ kind: 'conflict', index, ours, theirs, base })
 const text = (value) => ({ kind: 'text', text: value })
@@ -119,4 +121,37 @@ test('conflictAllDecided refuses an empty conflict list', () => {
   // No conflicts means there is nothing to resolve — saving must stay blocked
   // rather than writing an untouched body and claiming the conflict is settled.
   assert.equal(conflictAllDecided([], {}), false)
+})
+
+/* ---- the save gate (conflictCanSave) ---- */
+
+test('the save gate follows the block choices for an ordinary conflict', () => {
+  const blocks = [text('head'), conflict(0, ['a'], ['b']), conflict(1, ['c'], ['d'])]
+  const data = { truncated: false, work: 'whatever' }
+  assert.equal(conflictCanSave(data, blocks, {}), false)
+  assert.equal(conflictCanSave(data, blocks, { 0: 'ours' }), false)
+  assert.equal(conflictCanSave(data, blocks, { 0: 'ours', 1: 'theirs' }), true)
+})
+
+test('a delete/modify path can be kept, because the tree still holds the file', () => {
+  // No markers, so no blocks — but "keep the file" is a real answer: write the
+  // body that is already there and stage it.
+  const blocks = [text('one\ntwo edited\nthree\n')]
+  assert.equal(conflictCanSave({ work: 'one\ntwo edited\nthree\n', truncated: false }, blocks, {}), true)
+  // …and there is no answer at all when the tree no longer has the file: only
+  // "remove it" exists, and that is a different call.
+  assert.equal(conflictCanSave({ work: null, truncated: false }, blocks, {}), false)
+})
+
+test('a truncated read can never be written back', () => {
+  // The host caps what it reads; writing that back would silently cut the file,
+  // so even a fully-decided conflict stays unsaveable.
+  const blocks = [conflict(0, ['a'], ['b'])]
+  assert.equal(conflictCanSave({ truncated: true, work: 'x' }, blocks, { 0: 'ours' }), false)
+  assert.equal(conflictCanSave({ truncated: true, work: 'x' }, [text('x')], {}), false)
+})
+
+test('the save gate refuses a missing payload instead of throwing', () => {
+  assert.equal(conflictCanSave(null, [conflict(0, ['a'], ['b'])], { 0: 'ours' }), false)
+  assert.equal(conflictCanSave(undefined, [], {}), false)
 })
