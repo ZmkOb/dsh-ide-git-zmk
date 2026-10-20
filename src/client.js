@@ -14270,6 +14270,9 @@ window.__ModuleLoader__.load({
       '.dig-cf-hint{margin:8px;color:var(--dsw-alias-label-secondary);line-height:1.55}',
       '.dig-cf-solo{flex:1;overflow:auto;min-height:0;margin:0 8px 8px;border:1px solid var(--dsw-alias-border-l2);border-radius:var(--dsw-radius-sm,8px);padding:6px 8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere}',
       '.dig-cf-save.dig-cf-danger{background:var(--dsw-alias-state-error-primary);border-color:var(--dsw-alias-state-error-primary)}',
+      /* In the footer the save buttons live in an actions group, so the single
+         button's own push-to-the-right margin would spread a pair of them. */
+      '.dig-cf-foot .dig-cf-actions .dig-cf-save{margin-left:0}',
       '.dig-cf-save{margin-left:auto;font:inherit;font-size:12px;padding:4px 12px;border-radius:var(--dsw-radius-xs,4px);cursor:pointer;border:1px solid var(--dsw-brand,var(--dsw-alias-brand-primary));background:var(--dsw-alias-brand-primary);color:var(--dsw-alias-label-on-brand,#fff);font-weight:600}',
       '.dig-cf-save[disabled]{opacity:.45;cursor:default}',
       '.dig-diff-line{display:flex;gap:8px;padding:0 6px;white-space:pre}',
