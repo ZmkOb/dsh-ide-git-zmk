@@ -8859,7 +8859,7 @@ window.__ModuleLoader__.load({
               kept
                 ? E('button', {
                     type: 'button', className: 'dig-cf-save',
-                    disabled: busy === true,
+                    disabled: ready !== true || busy === true,
                     onClick: () => { void save() },
                   }, busy === true ? t('conflict.saving') : t('conflict.keepFile'))
                 : null,
