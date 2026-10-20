@@ -196,6 +196,24 @@ window.__ModuleLoader__.load({
       'detail.back': '返回历史',
       'detail.noFiles': '没有文件变更',
       'diff.empty': '没有可显示的文本差异',
+      'conflict.progress': '冲突 {done}/{total} 已解决',
+      'conflict.allOurs': '全部采用我方',
+      'conflict.allTheirs': '全部采用对方',
+      'conflict.blockTitle': '冲突 #{n}',
+      'conflict.takeOurs': '采用我方',
+      'conflict.takeTheirs': '采用对方',
+      'conflict.takeBoth': '两者都保留',
+      'conflict.undecided': '未决定',
+      'conflict.sideOurs': '我方（当前分支）',
+      'conflict.sideTheirs': '对方（合入的分支）',
+      'conflict.sideUpstream': '对方（上游）',
+      'conflict.sideMine': '我方（你的提交）',
+      'conflict.sideResult': '结果预览',
+      'conflict.undecidedText': '（未决定）',
+      'conflict.save': '保存并标记已解决',
+      'conflict.saving': '保存中…',
+      'conflict.saved': '已保存并标记为已解决',
+      'conflict.swapWarn': '变基中：左右方向相反',
       'pane.diff': '差异视图',
       'pane.resize': '拖动调整{name}尺寸,双击复位,方向键微调',
       'diff.binary': '二进制文件',
@@ -504,6 +522,24 @@ window.__ModuleLoader__.load({
       'detail.back': 'Back to history',
       'detail.noFiles': 'No file changes',
       'diff.empty': 'No textual diff to show',
+      'conflict.progress': 'Conflicts resolved: {done}/{total}',
+      'conflict.allOurs': 'Take all ours',
+      'conflict.allTheirs': 'Take all theirs',
+      'conflict.blockTitle': 'Conflict #{n}',
+      'conflict.takeOurs': 'Take ours',
+      'conflict.takeTheirs': 'Take theirs',
+      'conflict.takeBoth': 'Keep both',
+      'conflict.undecided': 'Undecided',
+      'conflict.sideOurs': 'Ours (current branch)',
+      'conflict.sideTheirs': 'Theirs (merged branch)',
+      'conflict.sideUpstream': 'Theirs (upstream)',
+      'conflict.sideMine': 'Ours (your commit)',
+      'conflict.sideResult': 'Result preview',
+      'conflict.undecidedText': '(undecided)',
+      'conflict.save': 'Save and mark resolved',
+      'conflict.saving': 'Saving…',
+      'conflict.saved': 'Saved and marked resolved',
+      'conflict.swapWarn': 'Rebase: the sides are reversed',
       'pane.diff': 'diff view',
       'pane.resize': 'Drag to resize {name}: double-click resets, arrow keys nudge',
       'diff.binary': 'Binary file',
@@ -820,6 +856,24 @@ window.__ModuleLoader__.load({
         'detail.back': '返回歷史',
         'detail.noFiles': '冇檔案變更',
         'diff.empty': '冇文字差異可以顯示',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': '差異檢視',
         'pane.resize': '拖動調整{name}尺寸,雙擊復位,方向鍵微調',
         'diff.binary': '二進位檔案',
@@ -1128,6 +1182,24 @@ window.__ModuleLoader__.load({
         'detail.back': '返回歷史',
         'detail.noFiles': '沒有檔案變更',
         'diff.empty': '沒有文字差異可顯示',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': '差異檢視',
         'pane.resize': '拖曳調整{name}尺寸,雙擊重設,方向鍵微調',
         'diff.binary': '二進位檔案',
@@ -1436,6 +1508,24 @@ window.__ModuleLoader__.load({
         'detail.back': '返回歷史',
         'detail.noFiles': '冇檔案變更',
         'diff.empty': '冇文字差異可以顯示',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': '差異檢視',
         'pane.resize': '拖動調整{name}尺寸,雙擊復位,方向鍵微調',
         'diff.binary': '二進位檔案',
@@ -1744,6 +1834,24 @@ window.__ModuleLoader__.load({
         'detail.back': '履歴に戻る',
         'detail.noFiles': 'ファイルの変更はありません',
         'diff.empty': '表示できるテキスト差分がありません',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': '差分ビュー',
         'pane.resize': '{name}のサイズをドラッグで調整(ダブルクリックでリセット、矢印キーで微調整)',
         'diff.binary': 'バイナリファイル',
@@ -2052,6 +2160,24 @@ window.__ModuleLoader__.load({
         'detail.back': '기록으로 돌아가기',
         'detail.noFiles': '파일 변경 없음',
         'diff.empty': '표시할 텍스트 차이가 없습니다',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': '차이 보기',
         'pane.resize': '{name} 크기를 드래그해 조절(더블클릭 초기화, 화살표 키 미세 조정)',
         'diff.binary': '바이너리 파일',
@@ -2360,6 +2486,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Zurück zum Verlauf',
         'detail.noFiles': 'Keine Dateiänderungen',
         'diff.empty': 'Kein textueller Diff vorhanden',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'Diff-Ansicht',
         'pane.resize': 'Größe von {name} per Ziehen ändern (Doppelklick setzt zurück, Pfeiltasten justieren)',
         'diff.binary': 'Binärdatei',
@@ -2668,6 +2812,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Retour à l\'historique',
         'detail.noFiles': 'Aucune modification de fichier',
         'diff.empty': 'Aucun diff textuel à afficher',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'vue du diff',
         'pane.resize': 'Glisser pour redimensionner {name} (double-clic pour réinitialiser, flèches pour ajuster)',
         'diff.binary': 'Fichier binaire',
@@ -2976,6 +3138,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Назад к истории',
         'detail.noFiles': 'Файлы не изменялись',
         'diff.empty': 'Нет текстовых различий для показа',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'просмотр diff',
         'pane.resize': 'Перетащите, чтобы изменить размер {name} (двойной клик — сброс, стрелки — точная настройка)',
         'diff.binary': 'Двоичный файл',
@@ -3284,6 +3464,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Voltar ao histórico',
         'detail.noFiles': 'Nenhuma alteração de arquivo',
         'diff.empty': 'Nenhum diff textual para mostrar',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'visualização do diff',
         'pane.resize': 'Arraste para redimensionar {name} (duplo clique restaura, setas ajustam)',
         'diff.binary': 'Arquivo binário',
@@ -3592,6 +3790,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Torna alla cronologia',
         'detail.noFiles': 'Nessuna modifica ai file',
         'diff.empty': 'Nessun diff testuale da mostrare',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'vista diff',
         'pane.resize': 'Trascina per ridimensionare {name} (doppio clic ripristina, frecce per regolare)',
         'diff.binary': 'File binario',
@@ -3900,6 +4116,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Terug naar geschiedenis',
         'detail.noFiles': 'Geen bestandswijzigingen',
         'diff.empty': 'Geen tekstuele diff om te tonen',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'diff-weergave',
         'pane.resize': 'Sleep om {name} te vergroten (dubbelklik herstelt, pijltjes stellen fijn af)',
         'diff.binary': 'Binair bestand',
@@ -4208,6 +4442,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Powrót do historii',
         'detail.noFiles': 'Brak zmian w plikach',
         'diff.empty': 'Brak różnic tekstowych do pokazania',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'widok diff',
         'pane.resize': 'Przeciągnij, aby zmienić rozmiar {name} (podwójne kliknięcie przywraca, strzałki korygują)',
         'diff.binary': 'Plik binarny',
@@ -4516,6 +4768,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Tillbaka till historiken',
         'detail.noFiles': 'Inga filändringar',
         'diff.empty': 'Ingen textdiff att visa',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'diff-vy',
         'pane.resize': 'Dra för att ändra storleken på {name} (dubbelklick återställer, piltangenter finjusterar)',
         'diff.binary': 'Binär fil',
@@ -4824,6 +5094,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Geçmişe dön',
         'detail.noFiles': 'Dosya değişikliği yok',
         'diff.empty': 'Gösterilecek metin farkı yok',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'diff görünümü',
         'pane.resize': '{name} boyutunu sürükleyerek ayarlayın (çift tıklama sıfırlar, ok tuşları ince ayar yapar)',
         'diff.binary': 'İkili dosya',
@@ -5132,6 +5420,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Kembali ke riwayat',
         'detail.noFiles': 'Tidak ada perubahan berkas',
         'diff.empty': 'Tidak ada diff teks untuk ditampilkan',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'tampilan diff',
         'pane.resize': 'Seret untuk mengubah ukuran {name} (klik ganda mengatur ulang, tombol panah menyesuaikan)',
         'diff.binary': 'Berkas biner',
@@ -5440,6 +5746,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'Quay lại lịch sử',
         'detail.noFiles': 'Không có thay đổi tệp',
         'diff.empty': 'Không có diff văn bản để hiển thị',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'chế độ xem diff',
         'pane.resize': 'Kéo để đổi kích thước {name} (nhấp đúp để đặt lại, phím mũi tên để tinh chỉnh)',
         'diff.binary': 'Tệp nhị phân',
@@ -5748,6 +6072,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'رجوع إلى السجل',
         'detail.noFiles': 'لا توجد تغييرات في الملفات',
         'diff.empty': 'لا توجد فروق نصية لعرضها',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'عرض الفروق',
         'pane.resize': 'اسحب لتغيير حجم {name} (النقر المزدوج يعيد الضبط، ومفاتيح الأسهم للضبط الدقيق)',
         'diff.binary': 'ملف ثنائي',
@@ -6056,6 +6398,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'इतिहास पर वापस',
         'detail.noFiles': 'कोई फ़ाइल परिवर्तन नहीं',
         'diff.empty': 'दिखाने के लिए कोई टेक्स्ट अंतर नहीं',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'डिफ़ व्यू',
         'pane.resize': '{name} का आकार बदलने के लिए खींचें (डबल-क्लिक रीसेट, तीर कुंजियाँ सूक्ष्म समायोजन)',
         'diff.binary': 'बाइनरी फ़ाइल',
@@ -6364,6 +6724,24 @@ window.__ModuleLoader__.load({
         'detail.back': 'กลับไปที่ประวัติ',
         'detail.noFiles': 'ไม่มีการเปลี่ยนแปลงไฟล์',
         'diff.empty': 'ไม่มีความต่างเชิงข้อความให้แสดง',
+        'conflict.progress': 'Conflicts resolved: {done}/{total}',
+        'conflict.allOurs': 'Take all ours',
+        'conflict.allTheirs': 'Take all theirs',
+        'conflict.blockTitle': 'Conflict #{n}',
+        'conflict.takeOurs': 'Take ours',
+        'conflict.takeTheirs': 'Take theirs',
+        'conflict.takeBoth': 'Keep both',
+        'conflict.undecided': 'Undecided',
+        'conflict.sideOurs': 'Ours (current branch)',
+        'conflict.sideTheirs': 'Theirs (merged branch)',
+        'conflict.sideUpstream': 'Theirs (upstream)',
+        'conflict.sideMine': 'Ours (your commit)',
+        'conflict.sideResult': 'Result preview',
+        'conflict.undecidedText': '(undecided)',
+        'conflict.save': 'Save and mark resolved',
+        'conflict.saving': 'Saving…',
+        'conflict.saved': 'Saved and marked resolved',
+        'conflict.swapWarn': 'Rebase: the sides are reversed',
         'pane.diff': 'มุมมอง diff',
         'pane.resize': 'ลากเพื่อปรับขนาด {name} (ดับเบิลคลิกเพื่อรีเซ็ต ปุ่มลูกศรปรับละเอียด)',
         'diff.binary': 'ไฟล์ไบนารี',
@@ -8194,6 +8572,138 @@ window.__ModuleLoader__.load({
         collapse: 'Show less',
         expand: (hidden) => 'Show ' + String(hidden) + ' more',
       }
+    }
+
+    /* ---- three-pane conflict resolver ----
+       A conflicted path has no usable unified diff. Git reports it as a COMBINED
+       diff (`diff --cc`: three line ranges, TWO marker columns), which the parsers
+       above cannot replay — they turn the marker columns into content and number
+       every row 0. So a conflicted file gets this view instead: the host's
+       `conflict` method hands back both sides already split into lines, every
+       conflict is decided here, and the assembled body goes back through
+       `resolveConflict` (which writes the file and runs `git add`).
+
+       DIRECTION: during a rebase / cherry-pick / revert git swaps stages 2 and 3,
+       so `swapped` decides which column is really "mine". Getting this wrong
+       labels both panes backwards, which is worse than no label at all. */
+
+    /** The text a single conflict contributes for a given choice, or null. */
+    function conflictResolutionText(block, choice) {
+      const ours = block.ours.join('\n')
+      const theirs = block.theirs.join('\n')
+      if (choice === 'ours') return ours
+      if (choice === 'theirs') return theirs
+      if (choice === 'both') {
+        if (ours === '') return theirs
+        if (theirs === '') return ours
+        return ours + '\n' + theirs
+      }
+      return null
+    }
+
+    /**
+     * Rebuild the whole file body from the parsed blocks plus one choice per
+     * conflict. Pure (no closure) so the resolver's output is testable without a
+     * browser — and so a half-decided file can never be written by accident:
+     * an undecided conflict contributes nothing and the caller refuses to save.
+     */
+    function conflictFileText(blocks, choices) {
+      const parts = []
+      for (const block of blocks) {
+        if (block.kind === 'text') { parts.push(block.text); continue }
+        const text = conflictResolutionText(block, choices[block.index])
+        if (text !== null) parts.push(text)
+      }
+      return parts.join('\n')
+    }
+
+    /** True only when every conflict carries a choice. */
+    function conflictAllDecided(conflicts, choices) {
+      if (conflicts.length === 0) return false
+      for (const conflict of conflicts) {
+        if (conflictResolutionText(conflict, choices[conflict.index]) === null) return false
+      }
+      return true
+    }
+
+    function ConflictPane(props) {
+      const t = props.t
+      const data = props.data
+      const blocks = data !== null && data !== undefined && Array.isArray(data.blocks) ? data.blocks : []
+      const conflicts = blocks.filter((block) => block.kind === 'conflict')
+      const [choices, setChoices] = useState({})
+      const [busy, setBusy] = useState(false)
+      const [note, setNote] = useState(null)
+      const decide = (index, choice) => {
+        setChoices((previous) => {
+          const next = Object.assign({}, previous)
+          if (choice === undefined) delete next[index]
+          else next[index] = choice
+          return next
+        })
+      }
+      const decideAll = (choice) => {
+        const next = {}
+        for (const conflict of conflicts) next[conflict.index] = choice
+        setChoices(next)
+      }
+      const resolved = conflicts.filter((conflict) => choices[conflict.index] !== undefined).length
+      const ready = conflictAllDecided(conflicts, choices)
+      /* Rebase/cherry-pick swap the sides: stage 2 is the upstream being replayed
+         onto, stage 3 is your own commit. */
+      const swapped = data !== null && data !== undefined && data.swapped === true
+      const leftLabel = swapped ? t('conflict.sideUpstream') : t('conflict.sideOurs')
+      const rightLabel = swapped ? t('conflict.sideMine') : t('conflict.sideTheirs')
+      const save = async () => {
+        if (ready !== true || busy === true) return
+        setBusy(true)
+        setNote(null)
+        try {
+          await props.onResolve(data.path, conflictFileText(blocks, choices))
+          setNote(t('conflict.saved'))
+        } catch (error) {
+          setNote(error instanceof Error ? error.message : String(error))
+        } finally {
+          setBusy(false)
+        }
+      }
+      const choiceButton = (block, choice, label) => E('button', {
+        type: 'button',
+        className: 'dig-cf-choice' + (choices[block.index] === choice ? ' dig-cf-on' : ''),
+        onClick: () => decide(block.index, choice),
+      }, label)
+      const column = (key, head, text) => E('div', { className: 'dig-cf-col dig-cf-' + key },
+        E('div', { className: 'dig-cf-colHead' }, head),
+        E('pre', { className: 'dig-cf-pre' }, text))
+      return E('div', { className: 'dig-cf-root' },
+        E('div', { className: 'dig-cf-head' },
+          E('span', { className: 'dig-cf-count' }, fill(t('conflict.progress'), { done: String(resolved), total: String(conflicts.length) })),
+          swapped ? E('span', { className: 'dig-cf-swap' }, t('conflict.swapWarn')) : null,
+          E('span', { className: 'dig-cf-actions' },
+            E('button', { type: 'button', className: 'dig-link', onClick: () => decideAll('ours') }, t('conflict.allOurs')),
+            E('button', { type: 'button', className: 'dig-link', onClick: () => decideAll('theirs') }, t('conflict.allTheirs')))),
+        E('div', { className: 'dig-cf-body' },
+          blocks.map((block, at) => block.kind === 'text'
+            ? E('pre', { key: 'tx' + at, className: 'dig-cf-text' }, block.text)
+            : E('div', { key: 'cf' + at, className: 'dig-cf-block' + (choices[block.index] === undefined ? ' dig-cf-open' : '') },
+                E('div', { className: 'dig-cf-blockHead' },
+                  E('span', null, fill(t('conflict.blockTitle'), { n: String(block.index + 1) })),
+                  E('span', { className: 'dig-cf-choices' },
+                    choiceButton(block, 'ours', t('conflict.takeOurs')),
+                    choiceButton(block, 'theirs', t('conflict.takeTheirs')),
+                    choiceButton(block, 'both', t('conflict.takeBoth')),
+                    E('button', { type: 'button', className: 'dig-cf-choice', onClick: () => decide(block.index, undefined) }, t('conflict.undecided')))),
+                E('div', { className: 'dig-cf-cols' },
+                  column('ours', leftLabel, block.ours.join('\n')),
+                  column('result', t('conflict.sideResult'), conflictResolutionText(block, choices[block.index]) === null ? t('conflict.undecidedText') : conflictResolutionText(block, choices[block.index])),
+                  column('theirs', rightLabel, block.theirs.join('\n')))))),
+        E('div', { className: 'dig-cf-foot' },
+          note === null ? null : E('span', { className: 'dig-cf-note' }, note),
+          E('button', {
+            type: 'button', className: 'dig-cf-save',
+            disabled: ready !== true || busy === true,
+            onClick: () => { void save() },
+          }, busy === true ? t('conflict.saving') : t('conflict.save'))))
     }
 
     function DiffBody(props) {
@@ -11043,6 +11553,9 @@ window.__ModuleLoader__.load({
       const [selectedPath, setSelectedPath] = useState(null)
       const [patch, setPatch] = useState('')
       const [patchLoading, setPatchLoading] = useState(false)
+      /* Non-null while the three-pane resolver owns the diff pane. Kept separate
+         from `patch` because a conflicted path has no replayable diff at all. */
+      const [conflictData, setConflictData] = useState(null)
       /* What the open diff pane shows (v0.13.5): the pane is shared by the
          commit detail (hash + subject) and the working tree (staged or not),
          and the selection menu's payload must say which. Cleared everywhere
@@ -11548,7 +12061,15 @@ window.__ModuleLoader__.load({
       const openDiff = useCallback(async (seed) => {
         setPatchLoading(true)
         setPatch('')
+        setConflictData(null)
         try {
+          /* An unmerged path gets the resolver, not a diff: git answers with a
+             COMBINED diff (`diff --cc`), which neither parser here can replay
+             faithfully — it turns the two marker columns into content. */
+          if (seed.conflicted === true) {
+            setConflictData(await request('conflict', Object.assign({}, base, { path: seed.path })))
+            return
+          }
           const data = await request('diff', Object.assign({}, base, seed))
           setPatch(data.patch)
         } catch (caught) {
@@ -11629,14 +12150,16 @@ window.__ModuleLoader__.load({
       /* The one diff verb every surface calls (row click, row menu, detail
          file menu, working-diff shortcut): external first, inline fallback. */
       const showDiff = useCallback((seed) => {
-        if (previewDiff(seed) === true) return
+        /* The external preview tab renders the same merged diff, so a conflicted
+           path must stay inline — only our own resolver can show it honestly. */
+        if (seed.conflicted !== true && previewDiff(seed) === true) return
         if (seed.hash !== undefined && seed.hash !== null) {
           setDiffContext({ kind: 'commit', hash: seed.hash, subject: seed.subject || '' })
           void openDiff({ hash: seed.hash, path: seed.path })
           return
         }
-        setDiffContext({ kind: 'worktree', staged: seed.staged === true })
-        void openDiff({ path: seed.path, staged: seed.staged === true })
+        setDiffContext({ kind: 'worktree', staged: seed.staged === true, conflicted: seed.conflicted === true })
+        void openDiff({ path: seed.path, staged: seed.staged === true, conflicted: seed.conflicted === true })
       }, [previewDiff, openDiff])
 
       const selectCommit = useCallback(async (commit) => {
@@ -12075,7 +12598,7 @@ window.__ModuleLoader__.load({
           return
         }
         const items = [
-          { id: 'diff', icon: 'file', tone: 'primary', label: t('action.showDiff'), run: () => { showDiff({ path: item.path, staged: group === 'staged', untracked: group === 'untracked' }) } },
+          { id: 'diff', icon: 'file', tone: 'primary', label: t('action.showDiff'), run: () => { showDiff({ path: item.path, staged: group === 'staged', untracked: group === 'untracked', conflicted: group === 'conflicted' }) } },
           { id: 'sendRef', icon: 'send', tone: 'accent', label: t('menu.sendToChat'), run: () => sendFileReferenceToChat(item.path) },
           null,
           group === 'staged'
@@ -12385,11 +12908,25 @@ window.__ModuleLoader__.load({
             onKeyDown: onHistoryKeyDown,
           })
 
-      const diffPane = patch === '' && patchLoading === false ? null : E('div', { className: 'dig-diff-pane', 'data-pane': 'diff', style: paneStyle('diff'), onContextMenu: onDiffPaneContextMenu },
+      const diffPane = patch === '' && patchLoading === false && conflictData === null ? null : E('div', { className: 'dig-diff-pane', 'data-pane': 'diff', style: paneStyle('diff'), onContextMenu: onDiffPaneContextMenu },
         E('div', { className: 'dig-diff-head' },
           E('span', { className: 'dig-mono dig-diff-path' }, selectedPath === null ? '' : selectedPath),
-          E('button', { type: 'button', className: 'dig-icon-btn', onClick: () => { setPatch(''); setSelectedPath(null); setDiffContext(null) } }, E(Icon, { name: 'close', size: 12 }))),
-        E(DiffBody, { patch: patch, loading: patchLoading, t: t }))
+          E('button', { type: 'button', className: 'dig-icon-btn', onClick: () => { setPatch(''); setConflictData(null); setSelectedPath(null); setDiffContext(null) } }, E(Icon, { name: 'close', size: 12 }))),
+        conflictData !== null
+          ? E(ConflictPane, {
+              data: conflictData, t: t,
+              /* Saving stages the path, so the entry leaves the unmerged set —
+                 close the pane and re-read the summary to show it as resolved. */
+              onResolve: async (path, content) => {
+                await request('resolveConflict', Object.assign({}, base, { path: path, content: content }))
+                setConflictData(null)
+                setPatch('')
+                setSelectedPath(null)
+                setDiffContext(null)
+                await refresh()
+              },
+            })
+          : E(DiffBody, { patch: patch, loading: patchLoading, t: t }))
 
       /* ---------- rail (IDE-style left action strip) ---------- */
 
@@ -12645,7 +13182,7 @@ window.__ModuleLoader__.load({
         onStageAll: (entries) => { void run('stage', { paths: entries.map((entry) => entry.path) }) },
         onUnstageAll: () => { void run('unstage', { paths: (summary === null ? [] : summary.changes.staged).map((entry) => entry.path) }) },
         onDiscard: (item, group) => setDialog({ kind: 'discard', item: item, group: group }),
-        onDiff: (item, group) => { showDiff({ path: item.path, staged: group === 'staged', untracked: group === 'untracked' }) },
+        onDiff: (item, group) => { showDiff({ path: item.path, staged: group === 'staged', untracked: group === 'untracked', conflicted: group === 'conflicted' }) },
         onChangeMenu: changeMenu,
         /* ---- multi-select (issue #13) ---- */
         selection: changeSelection,
@@ -13504,6 +14041,29 @@ window.__ModuleLoader__.load({
       '.dig-diff-head{display:flex;align-items:center;gap:8px;padding:3px 8px;color:var(--dsw-alias-label-tertiary);flex:none;min-width:0}',
       '.dig-diff-path{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}',
       '.dig-diff{flex:1;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.5;font-weight:500;min-height:0}',
+      /* ---- three-pane conflict resolver ---- */
+      '.dig-cf-root{flex:1;display:flex;flex-direction:column;min-height:0;font-size:12px}',
+      '.dig-cf-head{flex:none;display:flex;align-items:center;gap:8px;padding:4px 8px;border-bottom:1px solid var(--dsw-alias-border-l2);color:var(--dsw-alias-label-secondary)}',
+      '.dig-cf-count{font-weight:600}',
+      '.dig-cf-swap{color:var(--dsw-alias-state-warn-primary,var(--dsw-alias-brand-primary));font-size:11px}',
+      '.dig-cf-actions{margin-left:auto;display:flex;gap:8px}',
+      '.dig-cf-body{flex:1;overflow:auto;min-height:0;padding:6px 8px}',
+      '.dig-cf-text{margin:0;padding:2px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dsw-alias-label-tertiary);white-space:pre-wrap;overflow-wrap:anywhere}',
+      '.dig-cf-block{border:1px solid var(--dsw-alias-border-l2);border-radius:var(--dsw-radius-sm,8px);margin:8px 0;overflow:hidden}',
+      '.dig-cf-block.dig-cf-open{border-color:var(--dsw-alias-state-warn-primary,var(--dsw-alias-brand-primary))}',
+      '.dig-cf-blockHead{display:flex;align-items:center;gap:8px;padding:4px 8px;background:var(--dsw-alias-interactive-bg-hover);font-weight:600}',
+      '.dig-cf-choices{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}',
+      '.dig-cf-choice{font:inherit;font-size:11px;padding:2px 8px;border-radius:var(--dsw-radius-xs,4px);cursor:pointer;border:1px solid var(--dsw-alias-border-l2);background:transparent;color:var(--dsw-alias-label-secondary)}',
+      '.dig-cf-choice.dig-cf-on{border-color:var(--dsw-alias-brand-primary);color:var(--dsw-alias-brand-primary);font-weight:600}',
+      '.dig-cf-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--dsw-alias-border-l2)}',
+      '.dig-cf-col{display:flex;flex-direction:column;min-width:0;background:var(--dsw-alias-bg-base,transparent)}',
+      '.dig-cf-colHead{padding:2px 8px;font-size:11px;color:var(--dsw-alias-label-tertiary);border-bottom:1px solid var(--dsw-alias-border-l2)}',
+      '.dig-cf-pre{margin:0;padding:4px 8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere;min-height:18px}',
+      '.dig-cf-result .dig-cf-pre{color:var(--dsw-alias-label-primary)}',
+      '.dig-cf-foot{flex:none;display:flex;align-items:center;gap:8px;padding:6px 8px;border-top:1px solid var(--dsw-alias-border-l2)}',
+      '.dig-cf-note{color:var(--dsw-alias-label-tertiary);font-size:11px}',
+      '.dig-cf-save{margin-left:auto;font:inherit;font-size:12px;padding:4px 12px;border-radius:var(--dsw-radius-xs,4px);cursor:pointer;border:1px solid var(--dsw-brand,var(--dsw-alias-brand-primary));background:var(--dsw-alias-brand-primary);color:var(--dsw-alias-label-on-brand,#fff);font-weight:600}',
+      '.dig-cf-save[disabled]{opacity:.45;cursor:default}',
       '.dig-diff-line{display:flex;gap:8px;padding:0 6px;white-space:pre}',
       '.dig-diff-gutter{width:32px;flex:none;text-align:right;color:var(--dsw-alias-label-dimmed,var(--dsw-alias-label-tertiary));user-select:none}',
       '.dig-diff-text{white-space:pre-wrap;word-break:break-word;flex:1;min-width:0}',

@@ -456,7 +456,7 @@ test('the diff pane context menu reads the selection before the menu opens (v0.1
   // v0.14: the open verbs moved into ONE funnel, showDiff (external preview
   // first, inline pane as the fallback). The context contract survives
   // verbatim inside the funnel's inline legs.
-  assert.match(client, /setDiffContext\(\{ kind: 'worktree', staged: seed\.staged === true \}\)/,
+  assert.match(client, /setDiffContext\(\{ kind: 'worktree', staged: seed\.staged === true, conflicted: seed\.conflicted === true \}\)/,
     'the worktree pane remembers whether it shows staged or unstaged (showDiff inline leg)')
   assert.match(client, /setDiffContext\(\{ kind: 'commit', hash: seed\.hash, subject: seed\.subject \|\| '' \}\)/,
     'the commit-detail pane carries hash + subject at open time (showDiff inline leg)')
@@ -464,7 +464,9 @@ test('the diff pane context menu reads the selection before the menu opens (v0.1
   // base's openTab toward the right sidebar), inline only as a fallback —
   // and the external ref carries the repo root both ways (worktree + repoRoot)
   // so a multi-root workspace cannot land the diff in the wrong repository.
-  assert.match(client, /if \(previewDiff\(seed\) === true\) return/,
+  // A conflicted path stays inline: the external preview tab renders the same
+  // merged diff, so only our own resolver can show it honestly.
+  assert.match(client, /if \(seed\.conflicted !== true && previewDiff\(seed\) === true\) return/,
     'every diff verb goes through the external-first funnel')
   assert.match(client, /worktree: repoRoot, repoRoot: repoRoot/,
     'the external diff ref pins the repository root')
@@ -772,7 +774,7 @@ test('host half keeps the destructive-confirm guards', () => {
 })
 
 test('host half exposes the method table the client calls', () => {
-  const methods = ['summary', 'stats', 'branches', 'log', 'commitDetail', 'diff', 'compare', 'repos', 'stage', 'unstage', 'discard', 'commit', 'checkout', 'branchCreate', 'branchRename', 'branchDelete', 'merge', 'rebase', 'cherryPick', 'revert', 'reset', 'fetch', 'pull', 'push', 'stashList', 'stashPush', 'stashApply', 'stashDrop', 'tagCreate', 'tagDelete', 'tagDeleteRemote', 'pushTags', 'clone', 'gitLogs', 'remoteAdd', 'remoteRemove', 'branchDeleteRemote', 'rebaseAbort', 'stashClear', 'undoList', 'undoApply', 'version']
+  const methods = ['summary', 'stats', 'branches', 'log', 'commitDetail', 'diff', 'compare', 'repos', 'stage', 'unstage', 'conflict', 'resolveConflict', 'discard', 'commit', 'checkout', 'branchCreate', 'branchRename', 'branchDelete', 'merge', 'rebase', 'cherryPick', 'revert', 'reset', 'fetch', 'pull', 'push', 'stashList', 'stashPush', 'stashApply', 'stashDrop', 'tagCreate', 'tagDelete', 'tagDeleteRemote', 'pushTags', 'clone', 'gitLogs', 'remoteAdd', 'remoteRemove', 'branchDeleteRemote', 'rebaseAbort', 'stashClear', 'undoList', 'undoApply', 'version']
   for (const method of methods) {
     assert.match(host, new RegExp('^  ' + method + ',$', 'm'), 'host method missing: ' + method)
   }
